@@ -1,6 +1,9 @@
 #include <iostream>
+#include <fstream>
 #include <cctype>
 
+#include "key_generation.h"
+#include "system_output.h"
 #include "input_validation.h"
 
 void skip_to_int()
@@ -20,6 +23,62 @@ void skip_to_int()
 		}
 	}
 	std::cout << "No input\n";
+}
+
+void process_main_menu()
+{
+	int choice = get_int(1, 3, "Enter an int in the range", "Choice is out of range");
+	switch (choice)
+	{
+	case 1:
+		print_menu(choice);
+		process_key_menu();
+		break;
+	case 2:
+		std::cout << "Validating key\n";
+		break;
+	case 3:
+		std::cout << "Good bye;";
+		std::exit(EXIT_SUCCESS);
+		break;
+	default:
+		break;
+	}
+}
+
+void process_key_menu()
+{
+	int choice = get_int(1, 3, "Enter an int in the range", "Choice is out of range");
+	std::string CDKey;
+	std::string ofilename{ "keys.dat" };
+	switch (choice)
+	{
+	case 1:
+		CDKey = make_alphabet();
+		print_key(CDKey);
+		break;
+	case 2:
+		CDKey = make_alphabet();
+		write_file_key(CDKey, ofilename);
+		break;
+	case 3:
+		CDKey = make_alphabet();
+		print_key(CDKey);
+		write_file_key(CDKey, ofilename);
+		break;
+	default:
+		break;
+	}
+}
+
+void read_file_key(std::string& name)
+{
+	std::ifstream input_file{name};
+
+	if (!input_file)
+	{
+		std::cout << "No previous file detected, a new one will be created\n";
+	}
 }
 
 int get_int(const std::string& sorry)

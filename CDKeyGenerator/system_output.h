@@ -1,6 +1,6 @@
 #pragma once
 
-#include <fstream>
 
-void print_menu();
-void print_key(std::string &outStr, std::ofstream &outFile);
+void print_menu(int context = 0);
+void print_key(std::string& outStr);
+void write_file_key(std::string& outStr, std::string& filename);
