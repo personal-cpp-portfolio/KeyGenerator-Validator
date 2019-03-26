@@ -3,4 +3,5 @@
 
 bool want(const std::string& greeting, const std::string& sorry);
 std::string generate_key(std::string &alphabet, int length);
+void encode_key(std::string &cd_key);
 std::string make_alphabet();

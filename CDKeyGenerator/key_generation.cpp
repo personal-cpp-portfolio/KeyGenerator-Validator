@@ -42,7 +42,17 @@ std::string generate_key(std::string &alphabet, int length)
 		CDKey.push_back(alphabet.at(codeValue));
 		std::cout << alphabet.at(codeValue) << '\n';
 	}
+	encode_key(CDKey);
 	return CDKey;
+}
+
+void encode_key(std::string &cd_key)
+{
+	int offset = 3;
+	for (auto &x : cd_key)
+	{
+		x += offset;
+	}
 }
 
 std::string make_alphabet()
