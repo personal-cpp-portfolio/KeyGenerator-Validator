@@ -1,9 +1,5 @@
-#include <iostream>
-#include <string>
-
 #include "input_validation.h"
 #include "system_output.h"
-
 
 int main()
 {

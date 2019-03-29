@@ -35,14 +35,14 @@ std::string generate_key(std::string &alphabet, int length)
 
 	//Create key using all the available characters
 	std::string CDKey;
-	int codeValue = ' ';
+	int codeValue = 0;
 	for (unsigned i = 0; i < length; i++)
 	{
 		codeValue = (dist(valueGenerator));
 		CDKey.push_back(alphabet.at(codeValue));
-		std::cout << alphabet.at(codeValue) << '\n';
+		//std::cout << alphabet.at(codeValue) << '\n';
 	}
-	encode_key(CDKey);
+	//encode_key(CDKey);
 	return CDKey;
 }
 

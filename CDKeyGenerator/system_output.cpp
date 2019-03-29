@@ -2,7 +2,6 @@
 #include <string>
 #include <fstream>
 
-
 #include "system_output.h"
 
 void print_menu(int context)
