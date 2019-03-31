@@ -117,12 +117,14 @@
   <ItemGroup>
     <ClCompile Include="input_validation.cpp" />
     <ClCompile Include="key_generation.cpp" />
+    <ClCompile Include="key_validation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="system_output.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="input_validation.h" />
     <ClInclude Include="key_generation.h" />
+    <ClInclude Include="key_validation.h" />
     <ClInclude Include="system_output.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

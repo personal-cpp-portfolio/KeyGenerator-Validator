@@ -41,14 +41,16 @@ void print_key(std::string& outStr)
 
 void write_file_key(std::string& outStr, std::string& filename)
 {
-	std::ofstream out_file{ filename };
+	std::ofstream out_file{ filename, std::ios::binary | std::ios::app};
 	int keylength = outStr.length();
 	std::cout << "Writing key to file\n";
 	//Write the string spaced out every 4 characters
 	for (unsigned i = 0; i < keylength; i += 4)
 	{
 		out_file << outStr.substr(i, 4) << ' ';
+		
 	}
+	out_file << '\n';
 	std::cout << "File has been written successfully!\n";
 	out_file.close();
 }

@@ -27,6 +27,9 @@
     <ClCompile Include="system_output.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="key_validation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="input_validation.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="system_output.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="key_validation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

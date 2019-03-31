@@ -42,10 +42,11 @@ std::string generate_key(std::string &alphabet, int length)
 		CDKey.push_back(alphabet.at(codeValue));
 		//std::cout << alphabet.at(codeValue) << '\n';
 	}
-	//encode_key(CDKey);
+	encode_key(CDKey);
 	return CDKey;
 }
 
+//Use simple ceasar cipher to encode key
 void encode_key(std::string &cd_key)
 {
 	int offset = 3;

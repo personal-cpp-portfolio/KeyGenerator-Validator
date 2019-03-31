@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cctype>
+#include <vector>
 
 #include "key_generation.h"
 #include "system_output.h"
@@ -28,6 +29,7 @@ void skip_to_int()
 void process_main_menu()
 {
 	int choice = get_int(1, 3, "Enter an int in the range", "Choice is out of range");
+	std::string key_file_name{ "keys.dat" };
 	switch (choice)
 	{
 	case 1:
@@ -35,7 +37,7 @@ void process_main_menu()
 		process_key_menu();
 		break;
 	case 2:
-		std::cout << "Validating key\n";
+		read_file_key(key_file_name);
 		break;
 	case 3:
 		std::cout << "Good bye;";
@@ -74,11 +76,34 @@ void process_key_menu()
 void read_file_key(std::string& name)
 {
 	std::ifstream input_file{name};
-
+	std::vector<std::string> key_lines(1);
+	std::string currentline = "";
+	int line = 0;
 	if (!input_file)
 	{
 		std::cout << "No previous file detected, a new one will be created\n";
 	}
+
+
+	while (std::getline(input_file, currentline))
+	{
+		key_lines[line] = currentline;
+		line++;
+		key_lines.resize(key_lines.size() + 1);
+	}
+	
+	//Consider learning about regular expressions.
+	//Need to learn some more about strings and vectors as well.
+	std::string sample_key = "1G*$ }%o NoH= xEGI ";
+	for (int i = 0; i < key_lines.size(); i++)
+	{
+		if (sample_key == key_lines[i])
+		{
+			std::cout << "MATCH!\n";
+		}
+	}
+
+	int temp = 0;
 }
 
 int get_int(const std::string& sorry)
