@@ -29,7 +29,6 @@ void skip_to_int()
 void process_main_menu()
 {
 	int choice = get_int(1, 3, "Enter an int in the range", "Choice is out of range");
-	std::string key_file_name{ "keys.dat" };
 	switch (choice)
 	{
 	case 1:
@@ -37,7 +36,7 @@ void process_main_menu()
 		process_key_menu();
 		break;
 	case 2:
-		read_file_key(key_file_name);
+		process_input_key();
 		break;
 	case 3:
 		std::cout << "Good bye;";
@@ -73,7 +72,7 @@ void process_key_menu()
 	}
 }
 
-void read_file_key(std::string& name)
+std::vector<std::string> read_file_key(std::string& name)
 {
 	std::ifstream input_file{name};
 	std::vector<std::string> key_lines(1);
@@ -81,7 +80,8 @@ void read_file_key(std::string& name)
 	int line = 0;
 	if (!input_file)
 	{
-		std::cout << "No previous file detected, a new one will be created\n";
+		std::cerr << "File " << name << " does not exist!\n";
+		exit(EXIT_FAILURE);
 	}
 
 
@@ -91,19 +91,38 @@ void read_file_key(std::string& name)
 		line++;
 		key_lines.resize(key_lines.size() + 1);
 	}
-	
+
+	return key_lines;
+}
+
+bool validate_key(std::vector<std::string>& key_lines, std::string& key_to_validate)
+{
 	//Consider learning about regular expressions.
 	//Need to learn some more about strings and vectors as well.
-	std::string sample_key = "1G*$ Å}%o NoH= xEGI ";
 	for (int i = 0; i < key_lines.size(); i++)
 	{
-		if (sample_key == key_lines[i])
+		if (key_lines[i].length() == key_to_validate.length())
 		{
-			std::cout << "MATCH!\n";
+			if (key_to_validate == key_lines[i])
+			{
+				std::cout << "Your key is valid!\n";
+				return true;
+			}
 		}
 	}
+	std::cerr << "Entered key not found in file\n";
+	return false;
+}
 
-	int temp = 0;
+void process_input_key()
+{
+	std::string user_key;
+	std::string key_file_name{ "keys.dat" };
+	std::vector<std::string> keys_file{ read_file_key(key_file_name) };
+	std::cout << "Enter the key you want to validate: ";
+	std::cin.ignore();
+	std::getline(std::cin, user_key);
+	validate_key(keys_file, user_key);
 }
 
 int get_int(const std::string& sorry)

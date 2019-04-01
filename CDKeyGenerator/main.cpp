@@ -5,6 +5,6 @@ int main()
 {
 	print_menu();
 	process_main_menu();
-	//system("pause");
+	system("pause");
 	return 0;// EXIT_SUCCESS;
 }
